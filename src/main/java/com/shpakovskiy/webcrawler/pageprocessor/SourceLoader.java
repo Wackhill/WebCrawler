@@ -18,7 +18,9 @@ public class SourceLoader {
             return null;
         }
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+        try(InputStreamReader inputStreamReader = new InputStreamReader(url.openStream());
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+
             String line;
             StringBuilder pageContentBuilder = new StringBuilder();
 
@@ -26,7 +28,6 @@ public class SourceLoader {
                 pageContentBuilder.append(line);
                 pageContentBuilder.append(System.lineSeparator());
             }
-
             return pageContentBuilder.toString();
         } catch (IOException ioException) {
             ioException.printStackTrace();
